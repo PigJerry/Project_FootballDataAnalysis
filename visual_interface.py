@@ -27,8 +27,8 @@ with col1:
     st.subheader("📊 球队积分榜")
     import pandas as pd
     dummy_data = pd.DataFrame({
-        "球队": ["曼联", "利物浦", "切尔西"],
-        "积分": [65, 62, 58]
+        "球队": ["阿森纳", "利物浦", "切尔西"],
+        "积分": [85, 62, 58]
     })
     st.dataframe(dummy_data)
 
