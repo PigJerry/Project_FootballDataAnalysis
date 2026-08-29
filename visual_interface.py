@@ -1,3 +1,5 @@
+from data_fetcher import get_pl_standings
+
 import streamlit as st
 
 #页面配置
@@ -25,12 +27,10 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("📊 球队积分榜")
-    import pandas as pd
-    dummy_data = pd.DataFrame({
-        "球队": ["阿森纳", "利物浦", "切尔西"],
-        "积分": [85, 62, 58]
-    })
-    st.dataframe(dummy_data)
+    API_KEY = "b146c6a3dfd146da9480ae0e15857271"
+    df_real = get_pl_standings(API_KEY)
+
+    st.dataframe(df_real)
 
 with col2:
     st.subheader("📈 进球趋势")
