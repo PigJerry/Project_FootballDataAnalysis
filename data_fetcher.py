@@ -54,4 +54,5 @@ def get_pl_standings() -> pd.DataFrame:
     df["净胜球"] = df["进球"] - df["失球"]
     df = df[["球队", "场次", "胜", "平", "负", "积分", "净胜球"]]
     df = df.sort_values("积分", ascending=False).reset_index(drop=True)
+    df.index = df.index + 1  # 从 1 开始编号
     return df
