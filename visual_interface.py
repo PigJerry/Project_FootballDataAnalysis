@@ -27,9 +27,7 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("📊 球队积分榜")
-    API_KEY = "b146c6a3dfd146da9480ae0e15857271"
-    df_real = get_pl_standings(API_KEY)
-
+    df_real = get_pl_standings()
     st.dataframe(df_real)
 
 with col2:
