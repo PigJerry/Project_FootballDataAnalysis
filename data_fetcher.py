@@ -48,11 +48,21 @@ def get_pl_standings() -> pd.DataFrame:
             teams[away]["平"] += 1
             teams[home]["积分"] += 1
             teams[away]["积分"] += 1
+
+        teams[home]["失球"] += away_goals
+        teams[away]["失球"] += home_goals
     
     # 3. 转换为 DataFrame 并排序
     df = pd.DataFrame(teams.values())
     df["净胜球"] = df["进球"] - df["失球"]
-    df = df[["球队", "场次", "胜", "平", "负", "积分", "净胜球"]]
+    df = df[["球队", "场次", "胜", "平", "负", "积分", "净胜球","失球"]]
     df = df.sort_values("积分", ascending=False).reset_index(drop=True)
     df.index = df.index + 1  # 从 1 开始编号
     return df
+
+st.bar_chart(
+    data=df.sort_values("失球"),
+    x="球队",
+    y="失球",
+    horizontal=True
+)

@@ -38,6 +38,27 @@ with col2:
     ax.set_title("模拟进球趋势")
     st.pyplot(fig)
 
+    st.scatter_chart(
+        data = df_real, 
+        x = "进球", 
+        y = "积分",
+        color = "球队",
+        size = "净胜球"
+    )
+
+col3, col4 = st.columns(2)
+
+with col3:
+    st.subheader("📈 球队得分点状离散图")
+    st.scatter_chart(data=df_real, x="进球", y="积分")
+
+with col4:
+    st.subheader("⚽ 各球员进球排名")
+    st.bar_chart(data=player_df, x="球员", y="进球数")
+
+st.subheader("🛡️ 球队成功防守排名")
+st.bar_chart(data=df_real.sort_values("失球"), x="球队", y="失球", horizontal=True)
+
 # 5. 底部指标卡片
 st.markdown("---")
 col_a, col_b, col_c = st.columns(3)
